@@ -9,10 +9,10 @@
 ### END INIT INFO
 # Author: Noralf Tronnes <notro@tronnes.org>
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="Framebuffer copy daemon"
-NAME=Freeplay-fbcp
-DAEMON=/usr/local/bin/Freeplay-fbcp
-DAEMON_ARGS="/boot/freeplayfbcp.cfg"
+DESC="Framebuffer copy daemon by juj"
+NAME=juj-fbcp
+DAEMON=/usr/local/bin/fbcpCropped
+DAEMON_ARGS=""
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 # Exit if the package is not installed

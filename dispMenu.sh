@@ -6,26 +6,26 @@ vi_editor=${EDITOR-vi}
 
 use_dev_cropped ()
 {
-	sudo pkill fbcp
-	sudo rm -rf /usr/local/bin/Freeplay-fbcp
-	sudo cp fbcpCropped /usr/local/bin/Freeplay-fbcp
-	sudo /usr/local/bin/Freeplay-fbcp
+	sudo update-rc.d fbcpCropped.sh enable
+	sudo update-rc.d fbcpFilled.sh disable
+	sudo update-rc.d fbcp.sh disable
+	sudo reboot
 }
 
 use_dev_filled ()
 {
-	sudo pkill fbcp
-	sudo rm -rf /usr/local/bin/Freeplay-fbcp
-	sudo cp fbcpFilled /usr/local/bin/Freeplay-fbcp
-	sudo /usr/local/bin/Freeplay-fbcp
+	sudo update-rc.d fbcpCropped.sh disable
+	sudo update-rc.d fbcpFilled.sh enable
+	sudo update-rc.d fbcp.sh disable
+	sudo reboot
 }
 
 use_std ()
 {
-	sudo pkill fbcp
-	sudo rm -rf /usr/local/bin/Freeplay-fbcp
-	sudo cp fbcpOrig /usr/local/bin/Freeplay-fbcp
-	sudo /usr/local/bin/Freeplay-fbcp /boot/freeplayfbcp.cfg
+	sudo update-rc.d fbcpCropped.sh disable
+	sudo update-rc.d fbcpFilled.sh disable
+	sudo update-rc.d fbcp.sh enable
+	sudo reboot
 }
 
 dialog --clear --title "LCD Driver Selection" \
