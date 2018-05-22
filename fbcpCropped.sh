@@ -1,11 +1,11 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          fbcp
+# Provides:          fbcpCropped
 # Required-Start:    $local_fs $remote_fs
 # Required-Stop:     $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Framebuffer copy daemon fb0->fb1
+# Short-Description: Framebuffer copy daemon by juj
 ### END INIT INFO
 # Author: Noralf Tronnes <notro@tronnes.org>
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
