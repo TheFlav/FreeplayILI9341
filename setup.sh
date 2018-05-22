@@ -7,10 +7,10 @@ sudo cp display.png /home/pi/RetroPie/retropiemenu/icons/display.png
 sudo cp fbcpCropped.sh /etc/init.d/fbcpCropped.sh
 sudo cp fbcpFilled.sh /etc/init.d/fbcpFilled.sh
 
-sudo chmod +x /usr/local/bin/fbcpFilled
-sudo chmod +x /usr/local/bin/fbcpCropped
-sudo chown root:root /usr/local/bin/fbcpFilled.sh
-sudo chown root:root /usr/local/bin/fbcpCropped.sh
+sudo chmod +x /etc/init.d/fbcpCropped.sh
+sudo chmod +x /etc/init.d/fbcpFilled.sh
+sudo chown root:root /etc/init.d/fbcpCropped.sh 
+sudo chown root:root /etc/init.d/fbcpFilled.sh
 
 sudo update-rc.d fbcpFilled.sh defaults
 sudo update-rc.d fbcpCropped.sh defaults
