@@ -25,7 +25,7 @@ use_std ()
 	sudo pkill fbcp
 	sudo rm -rf /usr/local/bin/Freeplay-fbcp
 	sudo cp fbcpOrig /usr/local/bin/Freeplay-fbcp
-	sudo /usr/local/bin/Freeplay-fbcp
+	sudo /usr/local/bin/Freeplay-fbcp /boot/freeplayfbcp.cfg
 }
 
 dialog --clear --title "LCD Driver Selection" \
