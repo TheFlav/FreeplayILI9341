@@ -14,6 +14,7 @@ use_dev_cropped ()
 	sudo update-rc.d fbcpFilled.sh disable
 	sudo update-rc.d fbcp.sh disable
 
+	sleep 1
 	sudo service fbcpCropped start
 	echo "Using Cropped Experimental Driver"
 	sleep 5
@@ -29,6 +30,7 @@ use_dev_filled ()
 	sudo update-rc.d fbcpFilled.sh enable
 	sudo update-rc.d fbcp.sh disable
 
+	sleep 1
 	sudo service fbcpFilled start
 	echo "Using Filled Experimental Driver"
 	sleep 5
@@ -44,6 +46,7 @@ use_std ()
 	sudo update-rc.d fbcpFilled.sh disable
 	sudo update-rc.d fbcp.sh enable
 
+	sleep 1
 	sudo service fbcp start
 	echo "Using Standard Driver"
 	sleep 5
