@@ -9,6 +9,9 @@ use_dev_cropped ()
 	sudo update-rc.d fbcpCropped.sh enable
 	sudo update-rc.d fbcpFilled.sh disable
 	sudo update-rc.d fbcp.sh disable
+	echo "Using Cropped Experimental Driver"
+	echo "System will Shut Down in 10 Seconds"
+	sleep 10
 	sudo reboot
 }
 
@@ -17,6 +20,9 @@ use_dev_filled ()
 	sudo update-rc.d fbcpCropped.sh disable
 	sudo update-rc.d fbcpFilled.sh enable
 	sudo update-rc.d fbcp.sh disable
+	echo "Using Filled Experimental Driver"
+	echo "System will Shut Down in 10 Seconds"
+	sleep 10
 	sudo reboot
 }
 
@@ -25,6 +31,9 @@ use_std ()
 	sudo update-rc.d fbcpCropped.sh disable
 	sudo update-rc.d fbcpFilled.sh disable
 	sudo update-rc.d fbcp.sh enable
+	echo "Using Standard Driver"
+	echo "System will Shut Down in 10 Seconds"
+	sleep 10
 	sudo reboot
 }
 
