@@ -6,14 +6,18 @@ sudo cp dispMenu.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 sudo cp display.png /home/pi/RetroPie/retropiemenu/icons/display.png
 sudo cp fbcpCropped.sh /etc/init.d/fbcpCropped.sh
 sudo cp fbcpFilled.sh /etc/init.d/fbcpFilled.sh
+sudo cp fbcpFilled.sh /etc/init.d/fbcpZero.sh
 
 sudo chmod +x /etc/init.d/fbcpCropped.sh
 sudo chmod +x /etc/init.d/fbcpFilled.sh
+sudo chmod +x /etc/init.d/fbcpZero.sh
 sudo chown root:root /etc/init.d/fbcpCropped.sh 
 sudo chown root:root /etc/init.d/fbcpFilled.sh
+sudo chown root:root /etc/init.d/fbcpZero.sh
 
 sudo update-rc.d fbcpFilled.sh defaults
 sudo update-rc.d fbcpCropped.sh defaults
+sudo update-rc.d fbcpZero.sh defaults
 
 sudo sed -i 's|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
 sudo sed -i 's|hdmi_mode=16|hdmi_mode=4|' /boot/config.txt

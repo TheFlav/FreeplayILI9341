@@ -9,10 +9,12 @@ use_dev_cropped ()
 	sudo service fbcp stop
 	sudo service fbcpCropped stop
 	sudo service fbcpFilled stop
+	sudo service fbcpZero stop
 
 	sudo update-rc.d fbcpCropped.sh enable
 	sudo update-rc.d fbcpFilled.sh disable
 	sudo update-rc.d fbcp.sh disable
+	sudo update-rc.d fbcpZero.sh disable
 
 	sleep 1
 	sudo service fbcpCropped start
@@ -25,10 +27,12 @@ use_dev_filled ()
 	sudo service fbcp stop
 	sudo service fbcpCropped stop
 	sudo service fbcpFilled stop
+	sudo service fbcpZero stop
 
 	sudo update-rc.d fbcpCropped.sh disable
 	sudo update-rc.d fbcpFilled.sh enable
 	sudo update-rc.d fbcp.sh disable
+	sudo update-rc.d fbcpZero.sh disable
 
 	sleep 1
 	sudo service fbcpFilled start
@@ -41,10 +45,30 @@ use_std ()
 	sudo service fbcp stop
 	sudo service fbcpCropped stop
 	sudo service fbcpFilled stop
+	sudo service fbcpZero stop
 
 	sudo update-rc.d fbcpCropped.sh disable
 	sudo update-rc.d fbcpFilled.sh disable
 	sudo update-rc.d fbcp.sh enable
+	sudo update-rc.d fbcpZero.sh disable
+
+	sleep 1
+	sudo service fbcp start
+	echo "Using Standard Driver"
+	sleep 5
+}
+
+use_zero ()
+{ 
+	sudo service fbcp stop
+	sudo service fbcpCropped stop
+	sudo service fbcpFilled stop
+	sudo service fbcpZero stop
+
+	sudo update-rc.d fbcpCropped.sh disable
+	sudo update-rc.d fbcpFilled.sh disable
+	sudo update-rc.d fbcp.sh disable
+	sudo update-rc.d fbcpZero.sh enable
 
 	sleep 1
 	sudo service fbcp start
@@ -53,18 +77,21 @@ use_std ()
 }
 
 dialog --clear --title "LCD Driver Selection" \
---menu "Choose which LCD Driver you would like to use" 15 50 4 \
+--menu "Choose which LCD Driver you would like to use" 15 50 5 \
 Default "Default Driver" \
-Experimental_Cropped "Cropped for the GBA viewport" \
-Experimental_Filled "Fills the entire display" \
+Exp_Cropped "Cropped for the GBA viewport" \
+Exp_Filled "Fills the entire display" \
+Exp_Zero "Exp Cropped for FP Zero" \
+
 Exit "Exit without any changes" 2>"${INPUT}"
 
 menuitem=$(<"${INPUT}")
 
 case $menuitem in
 	Default) use_std;;
-	Experimental_Cropped) use_dev_cropped;;
-	Experimental_Filled) use_dev_filled;;
+	Exp_Cropped) use_dev_cropped;;
+	Exp_Filled) use_dev_filled;;
+        Exp_Zero) use_zero;;
 	Exit) echo "No changes made"; break;;
 esac
 
