@@ -18,6 +18,7 @@ use_dev_cropped ()
 
 	sleep 1
 	sudo service fbcpCropped start
+        sudo sed -i 's|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
 	echo "Using Cropped Experimental Driver"
 	sleep 5
 }
@@ -36,6 +37,7 @@ use_dev_filled ()
 
 	sleep 1
 	sudo service fbcpFilled start
+        sudo sed -i 's|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
 	echo "Using Filled Experimental Driver"
 	sleep 5
 }
@@ -54,6 +56,7 @@ use_std ()
 
 	sleep 1
 	sudo service fbcp start
+        sudo sed -i 's|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
 	echo "Using Standard Driver"
 	sleep 5
 }
@@ -72,6 +75,7 @@ use_zero ()
 
 	sleep 1
 	sudo service fbcp start
+        sudo sed -i 's|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
 	echo "Using Standard Driver"
 	sleep 5
 }
