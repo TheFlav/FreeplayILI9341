@@ -10,7 +10,7 @@
 # Author: Noralf Tronnes <notro@tronnes.org>
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Framebuffer copy daemon by juj"
-NAME=Freeplay-fbcp
+NAME=fbcpZero
 DAEMON=/usr/local/bin/fbcpZero
 DAEMON_ARGS=""
 PIDFILE=/var/run/$NAME.pid
