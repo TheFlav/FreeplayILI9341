@@ -6,94 +6,102 @@ vi_editor=${EDITOR-vi}
 
 use_dev_cropped ()
 {
-    if [ systemctl is-active --quiet fbcp -eq 0 ]
-    then
-        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
-    fi
+        if [ systemctl is-active --quiet fbcp -eq 0 ]
+        then
+            sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
+        fi
 
-    sudo service fbcp stop
-    sudo service fbcpCropped stop
-    sudo service fbcpFilled stop
-    sudo service fbcpZero stop
+        sudo service fbcp stop
+        sudo service fbcpCropped stop
+        sudo service fbcpFilled stop
+        sudo service fbcpZero stop
 
-    sudo update-rc.d fbcpCropped.sh enable
-    sudo update-rc.d fbcpFilled.sh disable
-    sudo update-rc.d fbcp.sh disable
-    sudo update-rc.d fbcpZero.sh disable
+        sleep 1
 
-    sleep 1
-    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
-    sleep 5
-    sudo reboot
+        sudo update-rc.d fbcpCropped.sh enable
+        sudo update-rc.d fbcpFilled.sh disable
+        sudo update-rc.d fbcp.sh disable
+        sudo update-rc.d fbcpZero.sh disable
+
+        sleep 1
+        dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
+        sleep 5
+        sudo reboot
 }
 
 use_dev_filled ()
 {
-    if [ systemctl is-active --quiet fbcp -eq 0 ]
-    then
-        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
-    fi
+        if [ systemctl is-active --quiet fbcp -eq 0 ]
+        then
+            sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
+        fi
 
-    sudo service fbcp stop
-    sudo service fbcpCropped stop
-    sudo service fbcpFilled stop
-    sudo service fbcpZero stop
+        sudo service fbcp stop
+        sudo service fbcpCropped stop
+        sudo service fbcpFilled stop
+        sudo service fbcpZero stop
 
-    sudo update-rc.d fbcpCropped.sh disable
-    sudo update-rc.d fbcpFilled.sh enable
-    sudo update-rc.d fbcp.sh disable
-    sudo update-rc.d fbcpZero.sh disable
+        sleep 1
 
-    sleep 1
-    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
-    sleep 5
-    sudo reboot
+        sudo update-rc.d fbcpCropped.sh disable
+        sudo update-rc.d fbcpFilled.sh enable
+        sudo update-rc.d fbcp.sh disable
+        sudo update-rc.d fbcpZero.sh disable
+
+        sleep 1
+        dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
+        sleep 5
+        sudo reboot
 }
 
 use_zero ()
 { 
-    if [ systemctl is-active --quiet fbcp -eq 0 ]
-    then
-        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
-    fi
+        if [ systemctl is-active --quiet fbcp -eq 0 ]
+        then
+            sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
+        fi
 
-    sudo service fbcp stop
-    sudo service fbcpCropped stop
-    sudo service fbcpFilled stop
-    sudo service fbcpZero stop
+        sudo service fbcp stop
+        sudo service fbcpCropped stop
+        sudo service fbcpFilled stop
+        sudo service fbcpZero stop
 
-    sudo update-rc.d fbcpCropped.sh disable
-    sudo update-rc.d fbcpFilled.sh disable
-    sudo update-rc.d fbcp.sh disable
-    sudo update-rc.d fbcpZero.sh enable
+        sleep 1
 
-    sleep 1
-    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
-    sleep 5
-    sudo reboot
+        sudo update-rc.d fbcpCropped.sh disable
+        sudo update-rc.d fbcpFilled.sh disable
+        sudo update-rc.d fbcp.sh disable
+        sudo update-rc.d fbcpZero.sh enable
+
+        sleep 1
+        dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
+        sleep 5
+        sudo reboot
 }
 
 use_std ()
 {
-    if [ systemctl is-active --quiet fbcpZero -eq 0 -o systemctl is-active --quiet fbcpCropped -eq 0 -o systemctl is-active --quiet fbcpFilled -eq 0 ]
-    then
-        sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
-    fi
+        if [ systemctl is-active --quiet fbcpZero -eq 0 -o systemctl is-active --quiet fbcpCropped -eq 0 -o systemctl is-active --quiet fbcpFilled -eq 0 ]
+        then
+            sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
+        fi
 
-    sudo service fbcp stop
-    sudo service fbcpCropped stop
-    sudo service fbcpFilled stop
-    sudo service fbcpZero stop
+        sudo service fbcp stop
+        sudo service fbcpCropped stop
+        sudo service fbcpFilled stop
+        sudo service fbcpZero stop
 
-    sudo update-rc.d fbcpCropped.sh disable
-    sudo update-rc.d fbcpFilled.sh disable
-    sudo update-rc.d fbcp.sh enable
-    sudo update-rc.d fbcpZero.sh disable
+        sleep 1
 
-    sleep 1
-    dialog --title 'Driver Changed' --msgbox 'Using default driver\nSystem must reboot\nTurn on again after system is off' 5 30
-    sleep 5
-    sudo reboot
+        sudo update-rc.d fbcpCropped.sh disable
+        sudo update-rc.d fbcpFilled.sh disable
+        sudo update-rc.d fbcp.sh enable
+        sudo update-rc.d fbcpZero.sh disable
+
+        sleep 1
+        dialog --title 'Driver Changed' --msgbox 'Using default driver\nSystem must reboot\nTurn on again after system is off' 5 30
+        sleep 5
+        sudo reboot
 }
 
 dialog --clear --title "LCD Driver Selection" \
