@@ -22,9 +22,9 @@ use_dev_cropped ()
     sudo update-rc.d fbcpZero.sh disable
 
     sleep 1
-    sudo service fbcpCropped start
-    echo "Using Cropped Experimental Driver"
+    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
     sleep 5
+    sudo reboot
 }
 
 use_dev_filled ()
@@ -45,9 +45,9 @@ use_dev_filled ()
     sudo update-rc.d fbcpZero.sh disable
 
     sleep 1
-    sudo service fbcpFilled start
-    echo "Using Filled Experimental Driver"
+    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
     sleep 5
+    sudo reboot
 }
 
 use_zero ()
@@ -68,9 +68,9 @@ use_zero ()
     sudo update-rc.d fbcpZero.sh enable
 
     sleep 1
-    sudo service fbcp start
-    echo "Using Standard Driver"
+    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
     sleep 5
+    sudo reboot
 }
 
 use_std ()
@@ -91,9 +91,9 @@ use_std ()
     sudo update-rc.d fbcpZero.sh disable
 
     sleep 1
-    sudo service fbcp start
-    echo "Using Standard Driver"
+    dialog --title 'Driver Changed' --msgbox 'Using default driver\nSystem must reboot\nTurn on again after system is off' 5 30
     sleep 5
+    sudo reboot
 }
 
 dialog --clear --title "LCD Driver Selection" \
