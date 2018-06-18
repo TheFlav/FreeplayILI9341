@@ -24,9 +24,8 @@ use_dev_cropped ()
     sudo update-rc.d fbcpZero.sh disable
     
     sleep 1
-    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
-    sleep 5
-    sudo reboot
+    sudo service fbcpCropped start
+    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver' 5 30
 }
 
 use_dev_filled ()
@@ -49,9 +48,8 @@ use_dev_filled ()
     sudo update-rc.d fbcpZero.sh disable
     
     sleep 1
-    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
-    sleep 5
-    sudo reboot
+    sudo service fbcpFilled start
+    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver' 5 30
 }
 
 use_zero ()
@@ -74,9 +72,8 @@ use_zero ()
     sudo update-rc.d fbcpZero.sh enable
     
     sleep 1
-    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver\nSystem must reboot\nTurn on again after system is off' 5 30
-    sleep 5
-    sudo reboot
+    sudo service fbcpZero start
+    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver' 5 30
 }
 
 use_std ()
@@ -99,9 +96,8 @@ use_std ()
     sudo update-rc.d fbcpZero.sh disable
     
     sleep 1
-    dialog --title 'Driver Changed' --msgbox 'Using default driver\nSystem must reboot\nTurn on again after system is off' 5 30
-    sleep 5
-    sudo reboot
+    sudo service fbcp start
+    dialog --title 'Driver Changed' --msgbox 'Using default driver' 5 30
 }
 
 dialog --clear --title "LCD Driver Selection" \
@@ -110,7 +106,6 @@ Default "Default Driver" \
 Exp_Cropped "Cropped for the GBA viewport" \
 Exp_Filled "Fills the entire display" \
 Exp_Zero "Exp Cropped for FP Zero" \
-
 Exit "Exit without any changes" 2>"${INPUT}"
 
 menuitem=$(<"${INPUT}")
