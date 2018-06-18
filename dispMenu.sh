@@ -6,78 +6,94 @@ vi_editor=${EDITOR-vi}
 
 use_dev_cropped ()
 {
-	sudo service fbcp stop
-	sudo service fbcpCropped stop
-	sudo service fbcpFilled stop
-	sudo service fbcpZero stop
+    if [ systemctl is-active --quiet fbcp -eq 0 ]
+    then
+        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
+    fi
 
-	sudo update-rc.d fbcpCropped.sh enable
-	sudo update-rc.d fbcpFilled.sh disable
-	sudo update-rc.d fbcp.sh disable
-	sudo update-rc.d fbcpZero.sh disable
+    sudo service fbcp stop
+    sudo service fbcpCropped stop
+    sudo service fbcpFilled stop
+    sudo service fbcpZero stop
 
-	sleep 1
-	sudo service fbcpCropped start
-        sudo sed -i 's|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
-	echo "Using Cropped Experimental Driver"
-	sleep 5
+    sudo update-rc.d fbcpCropped.sh enable
+    sudo update-rc.d fbcpFilled.sh disable
+    sudo update-rc.d fbcp.sh disable
+    sudo update-rc.d fbcpZero.sh disable
+
+    sleep 1
+    sudo service fbcpCropped start
+    echo "Using Cropped Experimental Driver"
+    sleep 5
 }
 
 use_dev_filled ()
 {
-	sudo service fbcp stop
-	sudo service fbcpCropped stop
-	sudo service fbcpFilled stop
-	sudo service fbcpZero stop
+    if [ systemctl is-active --quiet fbcp -eq 0 ]
+    then
+        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
+    fi
 
-	sudo update-rc.d fbcpCropped.sh disable
-	sudo update-rc.d fbcpFilled.sh enable
-	sudo update-rc.d fbcp.sh disable
-	sudo update-rc.d fbcpZero.sh disable
+    sudo service fbcp stop
+    sudo service fbcpCropped stop
+    sudo service fbcpFilled stop
+    sudo service fbcpZero stop
 
-	sleep 1
-	sudo service fbcpFilled start
-        sudo sed -i 's|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
-	echo "Using Filled Experimental Driver"
-	sleep 5
-}
+    sudo update-rc.d fbcpCropped.sh disable
+    sudo update-rc.d fbcpFilled.sh enable
+    sudo update-rc.d fbcp.sh disable
+    sudo update-rc.d fbcpZero.sh disable
 
-use_std ()
-{
-	sudo service fbcp stop
-	sudo service fbcpCropped stop
-	sudo service fbcpFilled stop
-	sudo service fbcpZero stop
-
-	sudo update-rc.d fbcpCropped.sh disable
-	sudo update-rc.d fbcpFilled.sh disable
-	sudo update-rc.d fbcp.sh enable
-	sudo update-rc.d fbcpZero.sh disable
-
-	sleep 1
-	sudo service fbcp start
-        sudo sed -i 's|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
-	echo "Using Standard Driver"
-	sleep 5
+    sleep 1
+    sudo service fbcpFilled start
+    echo "Using Filled Experimental Driver"
+    sleep 5
 }
 
 use_zero ()
 { 
-	sudo service fbcp stop
-	sudo service fbcpCropped stop
-	sudo service fbcpFilled stop
-	sudo service fbcpZero stop
+    if [ systemctl is-active --quiet fbcp -eq 0 ]
+    then
+        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
+    fi
 
-	sudo update-rc.d fbcpCropped.sh disable
-	sudo update-rc.d fbcpFilled.sh disable
-	sudo update-rc.d fbcp.sh disable
-	sudo update-rc.d fbcpZero.sh enable
+    sudo service fbcp stop
+    sudo service fbcpCropped stop
+    sudo service fbcpFilled stop
+    sudo service fbcpZero stop
 
-	sleep 1
-	sudo service fbcp start
-        sudo sed -i 's|dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|#dtoverlay=waveshare32b,speed=80000000,fps=60,rotate=270|' /boot/config.txt
-	echo "Using Standard Driver"
-	sleep 5
+    sudo update-rc.d fbcpCropped.sh disable
+    sudo update-rc.d fbcpFilled.sh disable
+    sudo update-rc.d fbcp.sh disable
+    sudo update-rc.d fbcpZero.sh enable
+
+    sleep 1
+    sudo service fbcp start
+    echo "Using Standard Driver"
+    sleep 5
+}
+
+use_std ()
+{
+    if [ systemctl is-active --quiet fbcpZero -eq 0 -o systemctl is-active --quiet fbcpCropped -eq 0 -o systemctl is-active --quiet fbcpFilled -eq 0 ]
+    then
+        sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
+    fi
+
+    sudo service fbcp stop
+    sudo service fbcpCropped stop
+    sudo service fbcpFilled stop
+    sudo service fbcpZero stop
+
+    sudo update-rc.d fbcpCropped.sh disable
+    sudo update-rc.d fbcpFilled.sh disable
+    sudo update-rc.d fbcp.sh enable
+    sudo update-rc.d fbcpZero.sh disable
+
+    sleep 1
+    sudo service fbcp start
+    echo "Using Standard Driver"
+    sleep 5
 }
 
 dialog --clear --title "LCD Driver Selection" \
