@@ -4,6 +4,27 @@ INPUT=/tmp/menu.sh.$$
 
 vi_editor=${EDITOR-vi}
 
+update ()
+{
+    git -C /home/pi/Freeplay/freeplayili9341 pull
+
+    sudo cp fbcpFilled /usr/local/bin
+    sudo cp fbcpCropped /usr/local/bin
+    sudo cp fbcpZero /usr/local/bin
+    sudo cp dispMenu.sh /home/pi/RetroPie/retropiemenu
+    sudo cp display.png /home/pi/RetroPie/retropiemenu/icons
+    sudo cp fbcpCropped.sh /etc/init.d
+    sudo cp fbcpFilled.sh /etc/init.d
+    sudo cp fbcpZero.sh /etc/init.d
+
+    sudo chmod +x /etc/init.d/fbcpCropped.sh
+    sudo chmod +x /etc/init.d/fbcpFilled.sh
+    sudo chmod +x /etc/init.d/fbcpZero.sh
+
+    sudo chown root:root /etc/init.d/fbcpCropped.sh 
+    sudo chown root:root /etc/init.d/fbcpFilled.sh
+    sudo chown root:root /etc/init.d/fbcpZero.sh
+}
 use_dev_cropped ()
 {
     if ! systemctl is-active --quiet fbcp
@@ -25,7 +46,7 @@ use_dev_cropped ()
     
     sleep 1
     sudo service fbcpCropped start
-    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver' 5 30
+    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver' 1 30
 }
 
 use_dev_filled ()
@@ -49,7 +70,7 @@ use_dev_filled ()
     
     sleep 1
     sudo service fbcpFilled start
-    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver' 5 30
+    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver' 1 30
 }
 
 use_zero ()
@@ -73,7 +94,7 @@ use_zero ()
     
     sleep 1
     sudo service fbcpZero start
-    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver' 5 30
+    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver' 1 30
 }
 
 use_std ()
@@ -97,7 +118,7 @@ use_std ()
     
     sleep 1
     sudo service fbcp start
-    dialog --title 'Driver Changed' --msgbox 'Using default driver' 5 30
+    dialog --title 'Driver Changed' --msgbox 'Using default driver' 1 30
 }
 
 dialog --clear --title "LCD Driver Selection" \
@@ -106,6 +127,7 @@ Default "Default Driver" \
 Exp_Cropped "Cropped for the GBA viewport" \
 Exp_Filled "Fills the entire display" \
 Exp_Zero "Exp Cropped for FP Zero" \
+Update "Update binaries and Menu" \
 Exit "Exit without any changes" 2>"${INPUT}"
 
 menuitem=$(<"${INPUT}")
@@ -115,6 +137,7 @@ case "$menuitem" in
     Exp_Cropped) use_dev_cropped;;
     Exp_Filled) use_dev_filled;;
     Exp_Zero) use_zero;;
+    Update) update;;
     Exit) echo "No changes made"; break;;
 esac
 
