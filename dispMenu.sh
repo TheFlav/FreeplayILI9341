@@ -12,18 +12,6 @@ update ()
     sudo cp fbcpCropped /usr/local/bin
     sudo cp fbcpZero /usr/local/bin
     sudo cp dispMenu.sh /home/pi/RetroPie/retropiemenu
-    sudo cp display.png /home/pi/RetroPie/retropiemenu/icons
-    sudo cp fbcpCropped.sh /etc/init.d
-    sudo cp fbcpFilled.sh /etc/init.d
-    sudo cp fbcpZero.sh /etc/init.d
-
-    sudo chmod +x /etc/init.d/fbcpCropped.sh
-    sudo chmod +x /etc/init.d/fbcpFilled.sh
-    sudo chmod +x /etc/init.d/fbcpZero.sh
-
-    sudo chown root:root /etc/init.d/fbcpCropped.sh 
-    sudo chown root:root /etc/init.d/fbcpFilled.sh
-    sudo chown root:root /etc/init.d/fbcpZero.sh
 }
 use_dev_cropped ()
 {
