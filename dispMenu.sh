@@ -122,7 +122,7 @@ use_std ()
 }
 
 dialog --clear --title "LCD Driver Selection" \
---menu "Choose which LCD Driver you would like to use" 15 50 5 \
+--menu "Choose which LCD Driver you would like to use" 15 50 6 \
 Default "Default Driver" \
 Exp_Cropped "Cropped for the GBA viewport" \
 Exp_Filled "Fills the entire display" \
