@@ -23,14 +23,15 @@ use_dev_cropped ()
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop
-    sudo service fbcpZero stop
+    sudo killall fbcp
+    sudo killall fbcpCropped
+    sudo killall fbcpFilled
     
     sleep 1
     
     sudo update-rc.d fbcpCropped.sh enable
     sudo update-rc.d fbcpFilled.sh disable
     sudo update-rc.d fbcp.sh disable
-    sudo update-rc.d fbcpZero.sh disable
     
     sleep 1
     sudo service fbcpCropped start
@@ -47,14 +48,15 @@ use_dev_filled ()
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop
-    sudo service fbcpZero stop
+    sudo killall fbcp
+    sudo killall fbcpCropped
+    sudo killall fbcpFilled
     
     sleep 1
     
     sudo update-rc.d fbcpCropped.sh disable
     sudo update-rc.d fbcpFilled.sh enable
     sudo update-rc.d fbcp.sh disable
-    sudo update-rc.d fbcpZero.sh disable
     
     sleep 1
     sudo service fbcpFilled start
@@ -75,14 +77,15 @@ use_std ()
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop
-    sudo service fbcpZero stop
+    sudo killall fbcp
+    sudo killall fbcpCropped
+    sudo killall fbcpFilled
     
     sleep 1
     
     sudo update-rc.d fbcpCropped.sh disable
     sudo update-rc.d fbcpFilled.sh disable
     sudo update-rc.d fbcp.sh enable
-    sudo update-rc.d fbcpZero.sh disable
     
     sleep 1
     sudo service fbcp start
