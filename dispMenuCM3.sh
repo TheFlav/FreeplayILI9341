@@ -91,7 +91,9 @@ use_std ()
     
     sleep 1
     sudo service fbcp start
-    dialog --title 'Driver Changed' --msgbox 'Using default driver' 3 30
+    dialog --title 'Driver Changed' --msgbox 'Using default driver\nRequires Reboot' 4 30
+    sleep 2
+    sudo reboot
 }
 
 dialog --clear --title "LCD Driver Selection" \
