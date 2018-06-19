@@ -34,7 +34,7 @@ use_dev_cropped ()
     
     sleep 1
     sudo service fbcpCropped start
-    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver' 1 30
+    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver' 3 30
 }
 
 use_dev_filled ()
@@ -58,31 +58,7 @@ use_dev_filled ()
     
     sleep 1
     sudo service fbcpFilled start
-    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver' 1 30
-}
-
-use_zero ()
-{ 
-    if ! systemctl is-active --quiet fbcp
-    then
-        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
-    fi
-    
-    sudo service fbcp stop
-    sudo service fbcpCropped stop
-    sudo service fbcpFilled stop
-    sudo service fbcpZero stop
-    
-    sleep 1
-    
-    sudo update-rc.d fbcpCropped.sh disable
-    sudo update-rc.d fbcpFilled.sh disable
-    sudo update-rc.d fbcp.sh disable
-    sudo update-rc.d fbcpZero.sh enable
-    
-    sleep 1
-    sudo service fbcpZero start
-    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver' 1 30
+    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver' 3 30
 }
 
 use_std ()
@@ -106,15 +82,14 @@ use_std ()
     
     sleep 1
     sudo service fbcp start
-    dialog --title 'Driver Changed' --msgbox 'Using default driver' 1 30
+    dialog --title 'Driver Changed' --msgbox 'Using default driver' 3 30
 }
 
 dialog --clear --title "LCD Driver Selection" \
---menu "Choose which LCD Driver you would like to use" 15 50 6 \
+--menu "Choose which LCD Driver you would like to use" 15 50 5 \
 Default "Default Driver" \
 Exp_Cropped "Cropped for the GBA viewport" \
 Exp_Filled "Fills the entire display" \
-Exp_Zero "Exp Cropped for FP Zero" \
 Update "Update binaries and Menu" \
 Exit "Exit without any changes" 2>"${INPUT}"
 
@@ -124,7 +99,6 @@ case "$menuitem" in
     Default) use_std;;
     Exp_Cropped) use_dev_cropped;;
     Exp_Filled) use_dev_filled;;
-    Exp_Zero) use_zero;;
     Update) update;;
     Exit) echo "No changes made"; break;;
 esac
