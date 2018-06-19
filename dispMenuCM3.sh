@@ -65,14 +65,16 @@ use_dev_filled ()
 
 use_std ()
 {
-    systemctl is-active --quiet fbcpCropped
-    CROPPED = $?
-    systemctl is-active --quiet fbcpFilled
-    FILLED = $?
-    if [ "$CROPPED"=="0" -o "$FILLED"=="0"]
+    if ! systemctl is-active --quiet fbcpCropped
     then
         sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
     fi
+
+    if ! systemctl is-active --quiet fbcpFilled
+    then
+        sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
+    fi
+    
     
     sudo service fbcp stop
     sudo service fbcpCropped stop
