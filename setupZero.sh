@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo cp fbcpZero /usr/local/bin
-sudo cp dispMenu.sh /home/pi/RetroPie/retropiemenu
+sudo cp dispMenuZero.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 sudo cp display.png /home/pi/RetroPie/retropiemenu/icons
 sudo cp fbcpZero.sh /etc/init.d
 

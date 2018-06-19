@@ -2,7 +2,7 @@
 
 sudo cp fbcpFilled /usr/local/bin
 sudo cp fbcpCropped /usr/local/bin
-sudo cp dispMenu.sh /home/pi/RetroPie/retropiemenu
+sudo cp dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 sudo cp display.png /home/pi/RetroPie/retropiemenu/icons
 sudo cp fbcpCropped.sh /etc/init.d
 sudo cp fbcpFilled.sh /etc/init.d
