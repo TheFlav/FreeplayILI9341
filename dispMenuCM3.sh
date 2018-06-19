@@ -64,9 +64,9 @@ use_dev_filled ()
 use_std ()
 {
     systemctl is-active --quiet fbcpCropped
-    $CROPPED = $?
+    CROPPED = $?
     systemctl is-active --quiet fbcpFilled
-    $FILLED = $?
+    FILLED = $?
     if [ !"$CROPPED" -o !"$FILLED" ]
     then
         sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
