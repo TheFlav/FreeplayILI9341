@@ -34,7 +34,7 @@ use_zero ()
 
 use_std ()
 {
-    if systemctl is-active --quiet fbcpZero -eq 0
+    if ! systemctl is-active --quiet fbcpZero
     then
         sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
     fi
