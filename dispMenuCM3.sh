@@ -11,7 +11,7 @@ update ()
     sudo cp fbcpFilled /usr/local/bin
     sudo cp fbcpCropped /usr/local/bin
     sudo cp fbcpZero /usr/local/bin
-    sudo cp dispMenu.sh /home/pi/RetroPie/retropiemenu
+    sudo cp dispMenuCM3.sh /home/pi/RetroPie/retropiemenu
 }
 use_dev_cropped ()
 {
@@ -23,7 +23,7 @@ use_dev_cropped ()
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop
-    sudo killall fbcp
+    sudo killall Freeplay-fbcp
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     
@@ -48,7 +48,7 @@ use_dev_filled ()
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop
-    sudo killall fbcp
+    sudo killall Freeplay-fbcp
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     
@@ -79,7 +79,7 @@ use_std ()
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop
-    sudo killall fbcp
+    sudo killall Freeplay-fbcp
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     

@@ -21,7 +21,7 @@ use_zero ()
     
     sudo service fbcp stop
     sudo service fbcpZero stop
-    sudo killall fbcp
+    sudo killall Freeplay-fbcp
     sudo killall fbcpZero
     
     sleep 1
@@ -43,7 +43,7 @@ use_std ()
     
     sudo service fbcp stop
     sudo service fbcpZero stop
-    sudo killall fbcp
+    sudo killall Freeplay-fbcp
     sudo killall fbcpZero
     
     sleep 1
