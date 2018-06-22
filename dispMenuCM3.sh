@@ -11,15 +11,12 @@ update ()
     sudo cp fbcpFilled /usr/local/bin
     sudo cp fbcpCropped /usr/local/bin
     sudo cp fbcpZero /usr/local/bin
-    sudo cp dispMenuCM3.sh /home/pi/RetroPie/retropiemenu
+    sudo cp dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 }
 use_dev_cropped ()
 {
-    if ! systemctl is-active --quiet fbcp
-    then
-        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
-    fi
-    
+    sudo sed -i 's|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|' /boot/config.txt
+
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop
@@ -40,11 +37,8 @@ use_dev_cropped ()
 
 use_dev_filled ()
 {
-    if ! systemctl is-active --quiet fbcp
-    then
-        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
-    fi
-    
+    sudo sed -i 's|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|' /boot/config.txt
+
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop
@@ -65,17 +59,8 @@ use_dev_filled ()
 
 use_std ()
 {
-    if ! systemctl is-active --quiet fbcpCropped
-    then
-        sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
-    fi
+    sudo sed -i 's|^#FP#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
 
-    if ! systemctl is-active --quiet fbcpFilled
-    then
-        sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
-    fi
-    
-    
     sudo service fbcp stop
     sudo service fbcpCropped stop
     sudo service fbcpFilled stop

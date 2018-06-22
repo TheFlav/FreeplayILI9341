@@ -9,15 +9,12 @@ update ()
     git -C /home/pi/Freeplay/freeplayili9341 pull
 
     sudo cp fbcpZero /usr/local/bin
-    sudo cp dispMenuZero.sh /home/pi/RetroPie/retropiemenu
+    sudo cp dispMenuZero.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 }
 
 use_zero ()
-{ 
-    if ! systemctl is-active --quiet fbcp
-    then
-        sudo sed -i 's|dtoverlay=waveshare32b|#dtoverlay=waveshare32b|' /boot/config.txt
-    fi
+{
+    sudo sed -i 's|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|' /boot/config.txt
     
     sudo service fbcp stop
     sudo service fbcpZero stop
@@ -36,10 +33,7 @@ use_zero ()
 
 use_std ()
 {
-    if ! systemctl is-active --quiet fbcpZero
-    then
-        sudo sed -i 's|#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
-    fi
+    sudo sed -i 's|^#FP#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
     
     sudo service fbcp stop
     sudo service fbcpZero stop
@@ -53,7 +47,9 @@ use_std ()
     
     sleep 1
     sudo service fbcp start
-    dialog --title 'Driver Changed' --msgbox 'Using default driver' 3 30
+    # dialog --title 'Driver Changed' --msgbox 'Using default driver' 3 30
+    sleep 2
+    sudo reboot
 }
 
 dialog --clear --title "LCD Driver Selection" \
