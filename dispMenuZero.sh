@@ -36,7 +36,6 @@ use_std ()
     sudo sed -i 's|^#FP#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
     
     sudo service fbcp stop
-    sudo service fbcpZero stop
     sudo systemctl stop fbcpZero.service
     sudo killall fbcpZero
     
@@ -49,7 +48,7 @@ use_std ()
     sudo service fbcp start
     dialog --title 'Driver Changed' --msgbox 'Using default driver' 3 30
     sleep 2
-    #sudo reboot
+    sudo reboot
 }
 
 dialog --clear --title "LCD Driver Selection" \
