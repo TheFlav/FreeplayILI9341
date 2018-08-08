@@ -7,13 +7,7 @@ cp dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 sudo rm /home/pi/RetroPie/retropiemenu/icons/display.png
 cp display.png /home/pi/RetroPie/retropiemenu/icons
 sudo cp fbcpCropped.service /lib/systemd/system/fbcpCropped.service
-sudo cp fbcpFilled.sh /lib/systemd/system/fbcpFilled.service
-
-sudo chmod +x /etc/init.d/fbcpCropped.sh
-sudo chmod +x /etc/init.d/fbcpFilled.sh
-
-sudo chown root:root /lib/systemd/system/fbcpCropped.service
-sudo chown root:root /lib/systemd/system/fbcpFilled.service
+sudo cp fbcpFilled.service /lib/systemd/system/fbcpFilled.service
 
 sudo systemctl disable fbcpFilled.service
 sudo systemctl disable fbcpCropped.service

@@ -7,10 +7,6 @@ sudo rm /home/pi/RetroPie/retropiemenu/icons/display.png
 cp display.png /home/pi/RetroPie/retropiemenu/icons
 sudo cp fbcpZero.service /lib/systemd/system/fbcpZero.service
 
-sudo chmod +x /lib/systemd/system/fbcpZero.service
-
-sudo chown root:root /lib/systemd/system/fbcpZero.service
-
 sudo systemctl disable fbcpZero.service
 sudo update-rc.d fbcp.sh enable
 
