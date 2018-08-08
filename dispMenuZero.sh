@@ -17,17 +17,17 @@ use_zero ()
     sudo sed -i 's|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|' /boot/config.txt
     
     sudo service fbcp stop
-    sudo service fbcpZero stop
+    sudo systemctl stop fbcpZero.service
     sudo killall Freeplay-fbcp
     sudo killall fbcpZero
     
     sleep 1
     
     sudo update-rc.d fbcp.sh disable
-    sudo update-rc.d fbcpZero.sh enable
+    sudo systemctl enable fbcpZero.service
     
     sleep 1
-    sudo service fbcpZero start
+    sudo systemctl start fbcpZero.service
     dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver' 3 30
 }
 
@@ -37,19 +37,19 @@ use_std ()
     
     sudo service fbcp stop
     sudo service fbcpZero stop
-    sudo killall Freeplay-fbcp
+    sudo systemctl stop fbcpZero.service
     sudo killall fbcpZero
     
     sleep 1
     
     sudo update-rc.d fbcp.sh enable
-    sudo update-rc.d fbcpZero.sh disable
+    sudo systemctl disable fbcpZero.service
     
     sleep 1
     sudo service fbcp start
-    # dialog --title 'Driver Changed' --msgbox 'Using default driver' 3 30
+    dialog --title 'Driver Changed' --msgbox 'Using default driver' 3 30
     sleep 2
-    sudo reboot
+    #sudo reboot
 }
 
 dialog --clear --title "LCD Driver Selection" \

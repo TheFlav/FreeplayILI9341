@@ -18,20 +18,20 @@ use_dev_cropped ()
     sudo sed -i 's|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|' /boot/config.txt
 
     sudo service fbcp stop
-    sudo service fbcpCropped stop
-    sudo service fbcpFilled stop
+    sudo systemctl stop fbcpCropped.service
+    sudo systemctl stop fbcpFilled.service
     sudo killall Freeplay-fbcp
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     
     sleep 1
     
-    sudo update-rc.d fbcpCropped.sh enable
-    sudo update-rc.d fbcpFilled.sh disable
+    sudo systemctl enable fbcpCropped.service
+    sudo systemctl disable fbcpFilled.service
     sudo update-rc.d fbcp.sh disable
     
     sleep 1
-    sudo service fbcpCropped start
+    sudo systemctl start fbcpCropped
     dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver' 3 30
 }
 
@@ -40,20 +40,20 @@ use_dev_filled ()
     sudo sed -i 's|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|' /boot/config.txt
 
     sudo service fbcp stop
-    sudo service fbcpCropped stop
-    sudo service fbcpFilled stop
+    sudo systemctl fbcpCropped.service stop
+    sudo systemctl fbcpFilled.service stop
     sudo killall Freeplay-fbcp
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     
     sleep 1
     
-    sudo update-rc.d fbcpCropped.sh disable
-    sudo update-rc.d fbcpFilled.sh enable
+    sudo systemctl disable fbcpCropped.service
+    sudo systemctl enable fbcpFilled.service
     sudo update-rc.d fbcp.sh disable
     
     sleep 1
-    sudo service fbcpFilled start
+    sudo systemctl start fbcpFilled.service
     dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver' 3 30
 }
 
@@ -62,16 +62,16 @@ use_std ()
     sudo sed -i 's|^#FP#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
 
     sudo service fbcp stop
-    sudo service fbcpCropped stop
-    sudo service fbcpFilled stop
+    sudo systemctl stop fbcpCropped.service
+    sudo systemctl stop fbcpFilled.service
     sudo killall Freeplay-fbcp
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     
     sleep 1
     
-    sudo update-rc.d fbcpCropped.sh disable
-    sudo update-rc.d fbcpFilled.sh disable
+    sudo systemctl disable fbcpCropped.service
+    sudo systemctl disable fbcpFilled.service
     sudo update-rc.d fbcp.sh enable
     
     sleep 1
