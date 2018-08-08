@@ -1,0 +1,14 @@
+[Unit]
+Description=juj fbcpZero driver for Freeplay CM3
+After=basic.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+User=root
+ExecStart=/usr/local/bin/fbcpZero
+
+[Install]
+WantedBy=multi-user.target
