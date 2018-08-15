@@ -28,7 +28,9 @@ use_zero ()
     
     sleep 1
     sudo systemctl start fbcpZero.service
-    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver' 3 30
+    dialog --title 'Driver Changed' --msgbox 'Using Zero experimental driver after Reboot' 5 30
+    sleep 2
+    sudo reboot
 }
 
 use_std ()
@@ -46,7 +48,7 @@ use_std ()
     
     sleep 1
     sudo service fbcp start
-    dialog --title 'Driver Changed' --msgbox 'Using default driver' 3 30
+    dialog --title 'Driver Changed' --msgbox 'Using default driver after reboot' 5 30
     sleep 2
     sudo reboot
 }

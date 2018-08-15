@@ -32,7 +32,9 @@ use_dev_cropped ()
     
     sleep 1
     sudo systemctl start fbcpCropped
-    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver' 3 30
+    dialog --title 'Driver Changed' --msgbox 'Using Cropped experimental driver after Reboot' 5 30
+    sleep 2
+    sudo restart
 }
 
 use_dev_filled ()
@@ -54,7 +56,9 @@ use_dev_filled ()
     
     sleep 1
     sudo systemctl start fbcpFilled.service
-    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver' 3 30
+    dialog --title 'Driver Changed' --msgbox 'Using Filled experimental driver after Reboot' 5 30
+    sleep 2
+    sudo restart
 }
 
 use_std ()
@@ -76,7 +80,7 @@ use_std ()
     
     sleep 1
     sudo service fbcp start
-    # dialog --title 'Driver Changed' --msgbox 'Using default driver\nRequires Reboot' 6 30
+    dialog --title 'Driver Changed' --msgbox 'Using default driver after Reboot' 5 30
     sleep 2
     sudo reboot
 }
