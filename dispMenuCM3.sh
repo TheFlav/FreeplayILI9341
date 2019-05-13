@@ -33,7 +33,7 @@ use_dev_cropped ()
     sleep 1
     sudo systemctl start fbcpCropped
     sleep 2
-    sudo restart
+    sudo reboot
 }
 
 use_dev_filled ()
@@ -56,7 +56,7 @@ use_dev_filled ()
     sleep 1
     sudo systemctl start fbcpFilled.service
     sleep 2
-    sudo restart
+    sudo reboot
 }
 
 use_std ()
