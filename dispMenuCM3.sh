@@ -8,9 +8,9 @@ update ()
 {
     git -C /home/pi/Freeplay/freeplayili9341 pull
 
-    sudo cp fbcpFilled /usr/local/bin
-    sudo cp fbcpCropped /usr/local/bin
-    sudo cp fbcpZero /usr/local/bin
+    sudo cp fbcpFilled /usr/local/bin/
+    sudo cp fbcpCropped /usr/local/bin/
+    sudo cp fbcpZero /usr/local/bin/
     sudo cp dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 }
 use_dev_cropped ()

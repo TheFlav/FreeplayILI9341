@@ -8,8 +8,8 @@ update ()
 {
     git -C /home/pi/Freeplay/freeplayili9341 pull
 
-    sudo cp fbcpZero /usr/local/bin
-    sudo cp fbcpZeroNoDMA /usr/local/bin
+    sudo cp fbcpZero /usr/local/bin/
+    sudo cp fbcpZeroNoDMA /usr/local/bin/
     sudo cp dispMenuZero.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
     sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZero.service /lib/systemd/system/fbcpZero.service
     sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZeroNoDMA.service /lib/systemd/system/fbcpZeroNoDMA.service
