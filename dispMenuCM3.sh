@@ -8,19 +8,21 @@ update ()
 {
     git -C /home/pi/Freeplay/freeplayili9341 pull
 
-    sudo cp fbcpFilled /usr/local/bin/
-    sudo cp fbcpCropped /usr/local/bin/
-    sudo cp fbcpZero /usr/local/bin/
-    sudo cp dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
+    sudo cp ~/Freeplay/freeplayili9341/fbcpFilled /usr/local/bin/fbcpFilled
+    sudo cp ~/Freeplay/freeplayili9341/fbcpCropped /usr/local/bin/fbcpCropped
+    sudo cp ~/Freeplay/freeplayili9341/fbcpZero /usr/local/bin/fbcpZero
+    sudo cp ~/Freeplay/freeplayili9341/dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 }
 use_dev_cropped ()
 {
     sudo sed -i 's|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|' /boot/config.txt
 
     sudo service fbcp stop
+    sudo systemctl stop fbcpOld.service
     sudo systemctl stop fbcpCropped.service
     sudo systemctl stop fbcpFilled.service
     sudo killall Freeplay-fbcp
+    sudo killall fbcpOld
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     
@@ -28,6 +30,7 @@ use_dev_cropped ()
     
     sudo systemctl enable fbcpCropped.service
     sudo systemctl disable fbcpFilled.service
+    sudo systemctl disable fbcpOld.service
     sudo update-rc.d fbcp.sh disable
     
     sleep 1
@@ -41,9 +44,11 @@ use_dev_filled ()
     sudo sed -i 's|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|' /boot/config.txt
 
     sudo service fbcp stop
+    sudo systemctl stop fbcpOld.service
     sudo systemctl fbcpCropped.service stop
     sudo systemctl fbcpFilled.service stop
     sudo killall Freeplay-fbcp
+    sudo killall fbcpOld
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     
@@ -51,6 +56,7 @@ use_dev_filled ()
     
     sudo systemctl disable fbcpCropped.service
     sudo systemctl enable fbcpFilled.service
+    sudo systemctl disable fbcpOld.service
     sudo update-rc.d fbcp.sh disable
     
     sleep 1
@@ -64,9 +70,11 @@ use_std ()
     sudo sed -i 's|^#FP#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
 
     sudo service fbcp stop
+    sudo systemctl stop fbcpOld.service
     sudo systemctl stop fbcpCropped.service
     sudo systemctl stop fbcpFilled.service
     sudo killall Freeplay-fbcp
+    sudo killall fbcpOld
     sudo killall fbcpCropped
     sudo killall fbcpFilled
     
@@ -74,6 +82,7 @@ use_std ()
     
     sudo systemctl disable fbcpCropped.service
     sudo systemctl disable fbcpFilled.service
+    sudo systemctl enable fbcpOld.service
     sudo update-rc.d fbcp.sh enable
     
     sleep 1
