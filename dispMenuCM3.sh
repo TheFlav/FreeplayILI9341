@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 INPUT=/tmp/menu.sh.$$
 
@@ -14,9 +14,11 @@ update ()
 	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpFilled /usr/local/bin/fbcpFilled
 	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpCropped /usr/local/bin/fbcpCropped
 	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZero /usr/local/bin/fbcpZero
+	sudo mv /home/pi/RetroPie/retropiemenu/dispMenu.sh /home/pi/RetroPie/retropiemenu/oldDispMenu.sh
 	sudo cp /home/pi/Freeplay/freeplayili9341/dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
+	sudo rm /home/pi/RetroPie/retropiemenu/oldDispMenu.sh
 
-	sudo reboot
+	dialog --clear --title "Update"
 }
 
 use_dev_cropped ()
