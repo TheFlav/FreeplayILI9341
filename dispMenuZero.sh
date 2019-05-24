@@ -2,15 +2,13 @@
 
 INPUT=/tmp/menu.sh.$$
 
-vi_editor=${EDITOR-vi}
-
 update ()
 {
     git -C /home/pi/Freeplay/freeplayili9341 pull
 
-    sudo cp fbcpZero /usr/local/bin/
-    sudo cp fbcpZeroNoDMA /usr/local/bin/
-    sudo cp dispMenuZero.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
+    sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZero /usr/local/bin/fbcpZero
+    sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZeroNoDMA /usr/local/bin/fbcpZeroNoDMA
+    sudo cp /home/pi/Freeplay/freeplayili9341/dispMenuZero.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
     sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZero.service /lib/systemd/system/fbcpZero.service
     sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZeroNoDMA.service /lib/systemd/system/fbcpZeroNoDMA.service
 }
@@ -33,8 +31,6 @@ use_zero ()
     sudo systemctl enable fbcpZero.service
     
     sleep 1
-    sudo systemctl start fbcpZero.service
-    sleep 2
     sudo reboot
 }
 
@@ -56,8 +52,6 @@ use_zero_no_dma ()
     sudo systemctl disable fbcpZero.service
     
     sleep 1
-    sudo systemctl start fbcpZeroNoDMA.service
-    sleep 2
     sudo reboot
 }
 
@@ -79,8 +73,6 @@ use_std ()
     sudo systemctl disable fbcpZeroNoDMA.service
     
     sleep 1
-    sudo service fbcp start
-    sleep 2
     sudo reboot
 }
 

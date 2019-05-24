@@ -2,8 +2,6 @@
 
 INPUT=/tmp/menu.sh.$$
 
-vi_editor=${EDITOR-vi}
-
 update ()
 {
 	git -C /home/pi/Freeplay/freeplayili9341 pull
@@ -13,13 +11,14 @@ update ()
 	sudo systemctl stop fbcpCropped.service
 	sudo systemctl stop fbcpFilled.service
 
-	sudo cp ~/Freeplay/freeplayili9341/fbcpFilled /usr/local/bin/fbcpFilled
-	sudo cp ~/Freeplay/freeplayili9341/fbcpCropped /usr/local/bin/fbcpCropped
-	sudo cp ~/Freeplay/freeplayili9341/fbcpZero /usr/local/bin/fbcpZero
-	sudo cp ~/Freeplay/freeplayili9341/dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
+	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpFilled /usr/local/bin/fbcpFilled
+	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpCropped /usr/local/bin/fbcpCropped
+	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZero /usr/local/bin/fbcpZero
+	sudo cp /home/pi/Freeplay/freeplayili9341/dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
 
 	sudo reboot
 }
+
 use_dev_cropped ()
 {
 	sudo sed -i "s|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|" /boot/config.txt
@@ -41,8 +40,6 @@ use_dev_cropped ()
 	sudo update-rc.d fbcp.sh disable
 
 	sleep 1
-	sudo systemctl start fbcpCropped
-	sleep 2
 	sudo reboot
 }
 
@@ -67,8 +64,6 @@ use_dev_filled ()
 	sudo update-rc.d fbcp.sh disable
 
 	sleep 1
-	sudo systemctl start fbcpFilled.service
-	sleep 2
 	sudo reboot
 }
 
@@ -93,8 +88,6 @@ use_std ()
 	sudo update-rc.d fbcp.sh enable
 
 	sleep 1
-	sudo service fbcp start
-	sleep 2
 	sudo reboot
 }
 
