@@ -17,3 +17,5 @@ case "$MENUITEM" in
 esac
 
 [ -f "$INPUT" ] && rm "$INPUT"
+
+exit 0
