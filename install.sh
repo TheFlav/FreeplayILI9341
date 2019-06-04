@@ -2,7 +2,7 @@
 
 INPUT=/tmp/dialogInstall.sh.$$
 
-dialog --clear --title "Freeplay Advanced Driver Install" \
+dialog --clear --title "Freeplay Display Driver Install" \
 	--menu "Select your Freeplay model:" 0 0 0 \
 	CM3 "Tested and fairly stable" \
 	Zero "Not recommended, poor emulator compatibility" \
@@ -13,7 +13,7 @@ MENUITEM=$(<"${INPUT}")
 case "$MENUITEM" in
 	CM3) ./setupCM3.sh;;
 	Zero) ./setupZero.sh;;
-	Exit) echo "No driver installed"; break;;
+	Exit) dialog --title "Freeplay Display Driver Install" --infobox "No driver selected.\nExiting installation" 5 30 ; sleep 2;;
 esac
 
 [ -f "$INPUT" ] && rm "$INPUT"
