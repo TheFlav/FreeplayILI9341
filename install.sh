@@ -11,8 +11,8 @@ dialog --clear --title "Freeplay Display Driver Install" \
 MENUITEM=$(<"${INPUT}")
 
 case "$MENUITEM" in
-	CM3) ./setupCM3.sh;;
-	Zero) ./setupZero.sh;;
+	CM3) ./installCM3.sh;;
+	Zero) ./installZero.sh;;
 	Exit) dialog --title "Freeplay Display Driver Install" --infobox "No driver selected.\nExiting installation" 5 30 ; sleep 2;;
 esac
 
