@@ -70,7 +70,33 @@ use_std ()
 	sudo killall fbcpZero
 	sudo killall fbcpZeroNoDMA
 
+	sudo sed -i 's/VIEWPORT=0/VIEWPORT=1/' /boot/freeplayfbcp.cfg
+
 	sleep 1
+
+	sudo update-rc.d fbcp.sh enable
+	sudo systemctl disable fbcpZero.service
+	sudo systemctl disable fbcpZeroNoDMA.service
+
+	sleep 1
+	sudo reboot
+}
+
+use_std_no_crop ()
+{
+	sudo sed -i 's|^#FP#dtoverlay=waveshare32b|dtoverlay=waveshare32b|' /boot/config.txt
+
+	sudo service fbcp stop
+	sudo systemctl stop fbcpZero.service
+	sudo systemctl stop fbcpZeroNoDMA.service
+	sudo killall Freeplay-fbcp
+	sudo killall fbcpZero
+	sudo killall fbcpZeroNoDMA
+
+	sudo sed -i 's/VIEWPORT=1/VIEWPORT=0/' /boot/freeplayfbcp.cfg
+
+	sleep 1
+
 
 	sudo update-rc.d fbcp.sh enable
 	sudo systemctl disable fbcpZero.service
@@ -92,6 +118,7 @@ menuitem=$(<"${INPUT}")
 
 case "$menuitem" in
 	Default) use_std;;
+	Default_Uncropped) use_std_no_crop;;
 	Exp_Zero) use_zero;;
 	NoDMA_Zero) use_zero_no_dma;;
 	Update) update;;
