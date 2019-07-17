@@ -4,11 +4,15 @@ INSTALL_DIR=/home/pi/Freeplay/$( ls /home/pi/Freeplay | grep -i freeplayili9341 
 
 git -C $INSTALL_DIR pull
 
+if [ -d "/home/pi/RetroPie/retropiemenu/Freeplay Options" ]; then
+	mkdir "/home/pi/RetroPie/retropiemenu/Freeplay Options"
+fi
 sudo cp $INSTALL_DIR/fbcpZero /usr/local/bin/fbcpZero
 sudo cp $INSTALL_DIR/fbcpZeroNoDMA /usr/local/bin/fbcpZeroNoDMA
-cp $INSTALL_DIR/dispMenuZero.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
-cp $INSTALL_DIR/display.png /home/pi/RetroPie/retropiemenu/icons
+cp $INSTALL_DIR/dispMenuZero.sh "/home/pi/RetroPie/retropiemenu/Freeplay Options/dispMenu.sh"
+cp $INSTALL_DIR/display.png /home/pi/RetroPie/retropiemenu/icons/display.png
 sudo cp $INSTALL_DIR/fbcpZero.service /lib/systemd/system/fbcpZero.service
+sudo cp $INSTALL_DIR/fbcpZeroNoDMA.service /lib/systemd/system/fbcpZeroNoDMA.service
 
 sudo systemctl disable fbcpZero.service
 sudo systemctl disable fbcpZeroNoDMA.service
