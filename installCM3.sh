@@ -7,9 +7,7 @@ git -C $INSTALL_DIR pull
 sudo cp $INSTALL_DIR/fbcpFilled /usr/local/bin/fbcpFilled
 sudo cp $INSTALL_DIR/fbcpCropped /usr/local/bin/fbcpCropped
 
-if [ -d "/home/pi/RetroPie/retropiemenu/Freeplay Options" ]; then
-	mkdir "/home/pi/RetroPie/retropiemenu/Freeplay Options"
-fi
+mkdir -p "/home/pi/RetroPie/retropiemenu/Freeplay Options"
 cp $INSTALL_DIR/dispMenuCM3.sh "/home/pi/RetroPie/retropiemenu/Freeplay Options/dispMenu.sh"
 cp $INSTALL_DIR/display.png /home/pi/RetroPie/retropiemenu/icons/display.png
 sudo cp $INSTALL_DIR/fbcpCropped.service /lib/systemd/system/fbcpCropped.service
