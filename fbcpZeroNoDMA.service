@@ -8,6 +8,7 @@ Type=simple
 Restart=always
 RestartSec=2
 User=root
+KillSignal=SIGKILL
 ExecStart=/usr/local/bin/fbcpZeroNoDMA
 
 [Install]
