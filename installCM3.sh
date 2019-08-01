@@ -6,19 +6,22 @@ git -C $INSTALL_DIR pull
 
 sudo cp $INSTALL_DIR/fbcpFilled /usr/local/bin/fbcpFilled
 sudo cp $INSTALL_DIR/fbcpCropped /usr/local/bin/fbcpCropped
+sudo cp $INSTALL_DIR/fbcpFilledNoSleep /usr/local/bin/fbcpFilledNoSleep
+sudo cp $INSTALL_DIR/fbcpCroppedNoSleep /usr/local/bin/fbcpCroppedNoSleep
 
 mkdir -p "/home/pi/RetroPie/retropiemenu/Freeplay Options"
 cp $INSTALL_DIR/dispMenuCM3.sh "/home/pi/RetroPie/retropiemenu/Freeplay Options/dispMenu.sh"
 cp $INSTALL_DIR/display.png /home/pi/RetroPie/retropiemenu/icons/display.png
 sudo cp $INSTALL_DIR/fbcpCropped.service /lib/systemd/system/fbcpCropped.service
 sudo cp $INSTALL_DIR/fbcpFilled.service /lib/systemd/system/fbcpFilled.service
+sudo cp $INSTALL_DIR/fbcpCroppedNoSleep.service /lib/systemd/system/fbcpCroppedNoSleep.service
+sudo cp $INSTALL_DIR/fbcpFilledNoSleep.service /lib/systemd/system/fbcpFilledNoSleep.service
+sudo cp $INSTALL_DIR/fbcpOld.service /lib/systemd/system/fbcpOld.service
 
 sudo systemctl disable fbcpFilled.service
 sudo systemctl disable fbcpCropped.service
 sudo update-rc.d fbcp.sh disable
 sudo rm -rf /etc/init.d/fbcp.sh
-
-sudo cp $INSTALL_DIR/fbcpOld.service /lib/systemd/system/fbcpOld.service
 
 sudo systemctl enable fbcpOld.service
 
