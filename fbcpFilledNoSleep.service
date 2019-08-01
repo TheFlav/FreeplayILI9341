@@ -9,7 +9,7 @@ Restart=always
 RestartSec=2
 User=root
 KillSignal=SIGKILL
-ExecStart=/usr/local/bin/fbcpFilled
+ExecStart=/usr/local/bin/fbcpFilledNoSleep
 
 [Install]
 WantedBy=multi-user.target
