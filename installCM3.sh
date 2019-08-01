@@ -1,8 +1,25 @@
 #!/bin/bash
 
+stop_all_running_services ()
+{
+	sudo service fbcp stop
+	sudo systemctl stop fbcpOld.service
+	sudo systemctl stop fbcpCropped.service
+	sudo systemctl stop fbcpFilled.service
+	sudo systemctl stop fbcpCroppedNoSleep.service
+	sudo systemctl stop fbcpFilledNoSleep.service
+	sudo killall Freeplay-fbcp
+	sudo killall fbcpOld
+	sudo killall fbcpCropped
+	sudo killall fbcpOldNoSleep
+	sudo killall fbcpCroppedNoSleep
+}
+
 INSTALL_DIR=/home/pi/Freeplay/$( ls /home/pi/Freeplay | grep -i freeplayili9341 )
 
 git -C $INSTALL_DIR pull
+
+stop_all_running_services
 
 sudo cp $INSTALL_DIR/fbcpFilled /usr/local/bin/fbcpFilled
 sudo cp $INSTALL_DIR/fbcpCropped /usr/local/bin/fbcpCropped
