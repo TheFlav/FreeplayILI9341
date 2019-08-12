@@ -29,16 +29,11 @@ disable_all_services ()
 
 update ()
 {
-	git -C /home/pi/Freeplay/freeplayili9341 pull
+	git -C /home/pi/Freeplay/FreeplayILI9341 pull
 
 	stop_all_running_services
 
-	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpFilled /usr/local/bin/fbcpFilled
-	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpCropped /usr/local/bin/fbcpCropped
-	sudo cp /home/pi/Freeplay/freeplayili9341/fbcpZero /usr/local/bin/fbcpZero
-	sudo mv /home/pi/RetroPie/retropiemenu/dispMenu.sh /home/pi/RetroPie/retropiemenu/oldDispMenu.sh
-	sudo cp /home/pi/Freeplay/freeplayili9341/dispMenuCM3.sh /home/pi/RetroPie/retropiemenu/dispMenu.sh
-	sudo rm /home/pi/RetroPie/retropiemenu/oldDispMenu.sh
+	/home/pi/Freeplay/FreeplayILI9341/installCM3.sh
 
 	dialog --clear --title "Update"
 }
@@ -54,6 +49,7 @@ use_dev_cropped ()
 	disable_all_services
 
 	sleep 1
+	sudo systemctl enable fbcpCropped.service
 	sudo reboot
 }
 
@@ -66,6 +62,22 @@ use_dev_filled ()
 	sleep 1
 
 	disable_all_services
+
+	sleep 1
+	sudo systemctl enable fbcpFilled.service
+	sudo reboot
+}
+
+use_bp_cropped ()
+{
+	sudo sed -i "s|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|" /boot/config.txt
+
+	stop_all_running_services
+
+	sleep 1
+
+	disable_all_services
+	sudo systemctl enable fbcpBPCropped.service
 
 	sleep 1
 	sudo reboot
@@ -81,6 +93,22 @@ use_dev_cropped_sleep ()
 
 	disable_all_services
 	sudo systemctl enable fbcpCroppedNoSleep.service
+
+	sleep 1
+	sudo reboot
+}
+
+
+use_bp_cropped_sleep ()
+{
+	sudo sed -i "s|^dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|" /boot/config.txt
+
+	stop_all_running_services
+
+	sleep 1
+
+	disable_all_services
+	sudo systemctl enable fbcpBPCroppedNoSleep.service
 
 	sleep 1
 	sudo reboot
@@ -117,12 +145,14 @@ use_std ()
 }
 
 dialog --clear --title "LCD Driver Selection" \
-	--menu "Choose which LCD Driver you would like to use" 15 50 5 \
+	--menu "Choose which LCD Driver you would like to use" 15 50 10 \
 	Default "Default Driver" \
 	Exp_Cropped "Cropped for the GBA viewport" \
 	Exp_Filled "Fills the entire display" \
 	Exp_NoSleep_Cropped "Cropped for the GBA viewport, no sleep" \
 	Exp_NoSleep_Filled "Fills the entire display, no sleep" \
+	Exp_BP_Crop "Boxy Pixel Cropped" \
+	Exp_BP_NoSleep_Crop "Boxy Pixel Cropped, No Sleep" \
 	Update "Update binaries and Menu" \
 	Exit "Exit without any changes" 2>"${INPUT}"
 
@@ -134,6 +164,8 @@ case "$menuitem" in
 	Exp_Filled) use_dev_filled;;
 	Exp_NoSleep_Cropped) use_dev_cropped_sleep;;
 	Exp_NoSleep_Filled) use_dev_filled_sleep;;
+	Exp_BP_Crop) use_bp_cropped;;
+	Exp_BP_NoSleep_Crop) use_bp_cropped_sleep;;
 	Update) update;;
 	Exit) echo "No changes made"; break;;
 esac

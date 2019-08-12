@@ -1,0 +1,15 @@
+[Unit]
+Description=juj fbcpCropped driver for Freeplay BoxyPixel CM3, No Sleep
+After=basic.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+User=root
+KillSignal=SIGKILL
+ExecStart=/usr/local/bin/fbcpBPCroppedNoSleep
+
+[Install]
+WantedBy=multi-user.target
