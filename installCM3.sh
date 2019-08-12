@@ -37,10 +37,13 @@ sudo cp $INSTALL_DIR/fbcpOld.service /lib/systemd/system/fbcpOld.service
 
 sudo systemctl disable fbcpFilled.service
 sudo systemctl disable fbcpCropped.service
+sudo systemctl disable fbcpFilledNoSleep.service
+sudo systemctl disable fbcpCroppedNoSleep.service
 sudo update-rc.d fbcp.sh disable
 sudo rm -rf /etc/init.d/fbcp.sh
 
 sudo systemctl enable fbcpOld.service
+sudo systemctl start fbcpOld.service
 
 if grep -q "Freeplay Change Display Driver" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
 	echo "Display Driver Menu Item Already Added"
