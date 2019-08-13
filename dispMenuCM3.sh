@@ -146,26 +146,26 @@ use_std ()
 
 dialog --clear --title "LCD Driver Selection" \
 	--menu "Choose which LCD Driver you would like to use" 15 50 10 \
-	Default "Default Driver" \
-	Exp_Cropped "Cropped for the GBA viewport" \
-	Exp_Filled "Fills the entire display" \
-	Exp_NoSleep_Cropped "Cropped for the GBA viewport, no sleep" \
-	Exp_NoSleep_Filled "Fills the entire display, no sleep" \
-	Exp_BP_Crop "Boxy Pixel Cropped" \
-	Exp_BP_NoSleep_Crop "Boxy Pixel Cropped, No Sleep" \
+	Stable "Stable, slow driver" \
+	FastCropped "Cropped for the GBA viewport" \
+	FastFilled "Fills the entire display" \
+	FastNoSleepCropped "Cropped, no sleep" \
+	FastNoSleepFilled "Fills, no sleep" \
+	FastBPCrop "Boxy Pixel Cropped" \
+	FastBPNoSleepCrop "BP Cropped, No Sleep" \
 	Update "Update binaries and Menu" \
 	Exit "Exit without any changes" 2>"${INPUT}"
 
 menuitem=$(<"${INPUT}")
 
 case "$menuitem" in
-	Default) use_std;;
-	Exp_Cropped) use_dev_cropped;;
-	Exp_Filled) use_dev_filled;;
-	Exp_NoSleep_Cropped) use_dev_cropped_sleep;;
-	Exp_NoSleep_Filled) use_dev_filled_sleep;;
-	Exp_BP_Crop) use_bp_cropped;;
-	Exp_BP_NoSleep_Crop) use_bp_cropped_sleep;;
+	Stable) use_std;;
+	FastCropped) use_dev_cropped;;
+	FastFilled) use_dev_filled;;
+	FastNoSleepCropped) use_dev_cropped_sleep;;
+	FastNoSleepFilled) use_dev_filled_sleep;;
+	FastBPCrop) use_bp_cropped;;
+	FastBPNoSleepCrop) use_bp_cropped_sleep;;
 	Update) update;;
 	Exit) echo "No changes made"; break;;
 esac
