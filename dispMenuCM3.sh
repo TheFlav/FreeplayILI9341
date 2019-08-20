@@ -177,7 +177,7 @@ for choice in $choices; do
 			esac
 			;;
 		FastCropped)
-			dialog --title "Fast Cropped Driver Description" --yesno "The Fast Cropped driver drops few frames and has the necessary cropping for standard Freeplay units; it also has sleep enabled for battery saving, which may cause low framerates after periods of inactivity. Would you like to enable it?" 15 60
+			dialog --title "Fast Cropped Driver Description" --yesno "The Fast Cropped driver is blazingly fast with rare incompatibility and has the necessary cropping for standard Freeplay units; it also has sleep enabled for battery saving, which may cause low framerates after periods of inactivity. Would you like to enable it?" 15 60
 			RESP=$?
 			case $RESP in
 				0) dialog --title "Fast Cropped Driver Selection" --infobox "Switching to Fast Cropped driver. System will turn off" 5 60; use_dev_cropped;;
@@ -186,7 +186,7 @@ for choice in $choices; do
 			esac
 			;;
 		FastFilled)
-			dialog --title "Fast Filled Driver Description" --yesno "The Fast Filled driver drops few frames and fills the display on large screen shells like the BoxyPixel; it also has sleep enabled for battery saving, which may cause low framerates after periods of inactivity. Would you like to enable it?" 15 60
+			dialog --title "Fast Filled Driver Description" --yesno "The Fast Filled driver is blazingly fast with rare incompatibility and fills the display on large screen shells like the BoxyPixel; it also has sleep enabled for battery saving, which may cause low framerates after periods of inactivity. Would you like to enable it?" 15 60
 			RESP=$?
 			case $RESP in
 				0) dialog --title "Fast Filled Driver Selection" --infobox "Switching to Fast Filled driver. System will turn off" 5 60; use_dev_filled;;
@@ -195,7 +195,7 @@ for choice in $choices; do
 			esac
 			;;
 		FastNoSleepCropped)
-			dialog --title "Fast No Sleep Cropped Driver Description" --yesno "The Fast No Sleep Cropped driver drops few frames and has the necessary cropping for standard Freeplay units; it also has sleep disabled which prevents framerate drops after periods of inactivity, but may reduce battery life. Would you like to enable it?" 15 60
+			dialog --title "Fast No Sleep Cropped Driver Description" --yesno "The Fast No Sleep Cropped driver is blazingly fast with rare incompatibility and has the necessary cropping for standard Freeplay units; it also has sleep disabled which prevents framerate drops after periods of inactivity, but may reduce battery life. Would you like to enable it?" 15 60
 			RESP=$?
 			case $RESP in
 				0) dialog --title "Fast No Sleep Cropped Driver Selection" --infobox "Switching to Fast No Sleep Cropped driver. System will turn off" 5 60; use_dev_cropped_nosleep;;
@@ -204,7 +204,7 @@ for choice in $choices; do
 			esac
 			;;
 		FastNoSleepFilled)
-			dialog --title "Fast No Sleep Filled Driver Description" --yesno "The Fast No Sleep Filled driver drops few frames and fills the display on large screen shells like the BoxyPixel; it also has sleep disabled which prevents framerate drops after periods of inactivity, but may reduce battery life. Would you like to enable it?" 15 60
+			dialog --title "Fast No Sleep Filled Driver Description" --yesno "The Fast No Sleep Filled driver is blazingly fast with rare incompatibility and fills the display on large screen shells like the BoxyPixel; it also has sleep disabled which prevents framerate drops after periods of inactivity, but may reduce battery life. Would you like to enable it?" 15 60
 			RESP=$?
 			case $RESP in
 				0) dialog --title "Fast No Sleep Filled Driver Selection" --infobox "Switching to Fast No Sleep Filled driver. System will turn off" 5 60; use_dev_filled_nosleep;;
@@ -213,7 +213,7 @@ for choice in $choices; do
 			esac
 			;;
 		FastBPCrop)
-			dialog --title "Fast BoxyPixel Cropped Driver Description" --yesno "The Fast BoxyPixel Cropped driver drops few frames and the necessary cropping for a BoxyPixel shell using a Freeplay lens; it also has sleep enabled to save battery, but may cause framerate drops after periods of inactivity. Would you like to enable it?" 15 60
+			dialog --title "Fast BoxyPixel Cropped Driver Description" --yesno "The Fast BoxyPixel Cropped driver is blazingly fast with rare incompatibility and the necessary cropping for a BoxyPixel shell using a Freeplay lens; it also has sleep enabled to save battery, but may cause framerate drops after periods of inactivity. Would you like to enable it?" 15 60
 			RESP=$?
 			case $RESP in
 				0) dialog --title "Fast BoxyPixel Cropped Driver Selection" --infobox "Switching to Fast BoxyPixel Cropped driver. System will turn off" 5 60; use_bp_cropped;;
@@ -222,7 +222,7 @@ for choice in $choices; do
 			esac
 			;;
 		FastBPNoSleepCrop)
-			dialog --title "Fast No Sleep BoxyPixel Uncropped Driver Description" --yesno "The Fast BoxyPixel Cropped driver drops few frames and the necessary cropping for a BoxyPixel shell using a Freeplay lens; it also has sleep disabled to prevent framerate drops after periods of inactivity, but may reduce battery life. Would you like to enable it?" 15 60
+			dialog --title "Fast No Sleep BoxyPixel Uncropped Driver Description" --yesno "The Fast BoxyPixel Cropped driver is blazingly fast with rare incompatibility and the necessary cropping for a BoxyPixel shell using a Freeplay lens; it also has sleep disabled to prevent framerate drops after periods of inactivity, but may reduce battery life. Would you like to enable it?" 15 60
 			RESP=$?
 			case $RESP in
 				0) dialog --title "Fast No Sleep BoxyPixel Uncropped Driver Selection" --infobox "Switching to Fast No Sleep BoxyPixel Uncropped driver. System will turn off" 5 60; use_bp_cropped_sleep;;
