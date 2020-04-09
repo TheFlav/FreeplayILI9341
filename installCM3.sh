@@ -55,6 +55,8 @@ sudo rm -rf /etc/init.d/fbcp.sh
 sudo systemctl enable fbcpOld.service
 sudo systemctl start fbcpOld.service
 
+sudo sed -i "s|^#dtoverlay=waveshare32b|#FP#dtoverlay=waveshare32b|" /boot/config.txt
+
 if grep -q "Freeplay Change Display Driver" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
 	echo "Display Driver Menu Item Already Added"
 else
