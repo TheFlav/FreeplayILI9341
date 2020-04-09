@@ -10,6 +10,8 @@ stop_all_running_services ()
 	sudo systemctl stop fbcpFilled.service
 	sudo systemctl stop fbcpCroppedNoSleep.service
 	sudo systemctl stop fbcpFilledNoSleep.service
+	sudo systemctl stop fbcpBPCroppedNoSleep.service
+	sudo systemctl stop fbcpBPCropped.service
 	sudo killall Freeplay-fbcp
 	sudo killall fbcpOld
 	sudo killall fbcpCropped
@@ -25,6 +27,8 @@ disable_all_services ()
 	sudo systemctl disable fbcpFilled.service
 	sudo systemctl disable fbcpCroppedNoSleep.service
 	sudo systemctl disable fbcpFilledNoSleep.service
+	sudo systemctl disable fbcpBPCroppedNoSleep.service
+	sudo systemctl disable fbcpBPCropped.service
 }
 
 update ()
